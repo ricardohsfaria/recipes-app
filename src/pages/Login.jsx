@@ -8,6 +8,10 @@ class Login extends Component {
     disableLoginButton: true,
   };
 
+  // const [email, setEmail] = useState('');
+  // const [password, setPassword] = useState('');
+  // const [disableLoginButton, setDisableLoginButton ] = useState(true);
+
   handleInputChanges = ({ target }) => {
     const { name, value } = target;
 
