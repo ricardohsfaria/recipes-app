@@ -1,15 +1,15 @@
-import React, { Component } from 'react';
+import React, { useContext } from 'react';
+import RecipesProvider from '../context/RecipesProvider';
 
-class Meals extends Component {
-  render() {
-    return (
-      <div>
-        <fieldset>
-          <legend>Meals</legend>
-        </fieldset>
-      </div>
-    );
-  }
+function Meals() {
+  const { recipes } = useContext(RecipesProvider);
+  return (
+    <div>
+      <fieldset>
+        <legend>{recipes}</legend>
+      </fieldset>
+    </div>
+  );
 }
 
 export default Meals;
