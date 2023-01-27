@@ -6,6 +6,7 @@ export function ContextProvider({ children }) {
   const [path, setPath] = useState('/drinks');
   const [recipesFood, setRecipesFood] = useState([]);
   const [recipesDrink, setRecipesDrink] = useState([]);
+  const [title, setTitle] = useState('');
 
   const fetchFood = async () => {
     const url = 'https://www.themealdb.com/api/json/v1/1/search.php?s=';
@@ -33,6 +34,8 @@ export function ContextProvider({ children }) {
     () => ({
       path,
       setPath,
+      title,
+      setTitle,
       recipesFood,
       recipesDrink,
       setRecipesFood,
@@ -40,6 +43,8 @@ export function ContextProvider({ children }) {
     [
       path,
       setPath,
+      title,
+      setTitle,
       recipesFood,
       recipesDrink,
       setRecipesFood,

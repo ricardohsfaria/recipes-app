@@ -9,11 +9,7 @@ import { ContextProvider } from './context/ContextProvider';
 ReactDOM
   .createRoot(document.getElementById('root'))
   .render(
-    <ContextProvider>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </ContextProvider>,
+    <App />,
   );
 
 serviceWorker.unregister();
