@@ -1,9 +1,12 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import RecipesProvider from '../context/RecipesProvider';
 import Footer from '../components/Footer';
 
 function Meals() {
-  const { recipes } = useContext(RecipesProvider);
+  const { recipes, setTitle } = useContext(RecipesProvider);
+  useEffect(() => {
+    setTitle('Meals');
+  }, [setTitle]);
   return (
     <div>
       <fieldset>

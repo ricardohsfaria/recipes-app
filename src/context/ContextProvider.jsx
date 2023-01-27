@@ -4,15 +4,20 @@ import RecipesProvider from './RecipesProvider';
 
 export function ContextProvider({ children }) {
   const [recipes, setRecipes] = useState('Xablau');
+  const [title, setTitle] = useState('');
 
   const GLOBAL_CONTEXT = useMemo(
     () => ({
       recipes,
       setRecipes,
+      title,
+      setTitle,
     }),
     [
       recipes,
       setRecipes,
+      title,
+      setTitle,
     ],
   );
 
