@@ -10,7 +10,6 @@ import DrinkDetails from './components/DrinkDetails';
 import DrinkDetailsInProgress from './components/DrinkDetailsInProgress';
 import Profile from './pages/Profile';
 import { ContextProvider } from './context/ContextProvider';
-import Profile from './pages/Profile';
 import DoneRecipes from './pages/DoneRecipes';
 import FavoriteRecipes from './pages/FavoriteRecipes';
 // import './App.css';
