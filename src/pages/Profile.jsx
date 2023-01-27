@@ -1,5 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import RecipesProvider from '../context/RecipesProvider';
+import Footer from '../components/Footer';
 
 function Profile() {
   const { setTitle } = useContext(RecipesProvider);
@@ -7,7 +8,14 @@ function Profile() {
     setTitle('Profile');
   }, [setTitle]);
   return (
-    <div>Profile</div>
+    <div>
+      <fieldset>
+        <legend>
+          Profile
+        </legend>
+      </fieldset>
+      <Footer />
+    </div>
   );
 }
 

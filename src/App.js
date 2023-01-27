@@ -8,6 +8,7 @@ import MealDetailsInProgress from './components/MealDetailsInProgress';
 import Drinks from './pages/Drinks';
 import DrinkDetails from './components/DrinkDetails';
 import DrinkDetailsInProgress from './components/DrinkDetailsInProgress';
+import Profile from './pages/Profile';
 import { ContextProvider } from './context/ContextProvider';
 import Profile from './pages/Profile';
 import DoneRecipes from './pages/DoneRecipes';
