@@ -5,7 +5,7 @@ import Profile from '../pages/Profile';
 import { renderWithRouter } from './helpers/renderWith';
 
 describe('A página Profile', () => {
-  test('contém um elemento que mostra o email do usuário', () => {
+  test('contém um elemento que mostra um email de exemplo caso não haja email do usuário', () => {
     render(<Profile />);
 
     const userEmail = screen.getByTestId('profile-email');
@@ -13,6 +13,17 @@ describe('A página Profile', () => {
 
     const exampleEmail = 'example@example.com';
     expect(userEmail.textContent).toBe(exampleEmail);
+  });
+
+  test('contém um elemento que mostra o email do usuário caso esteja no localStorage', () => {
+    const email = 'conde@dracula.com';
+    const userEmail = JSON.stringify({ email });
+    localStorage.setItem('user', userEmail);
+
+    render(<Profile />);
+
+    const emailElement = screen.findByText(/conde@dracula.com/i);
+    waitFor(() => expect(emailElement).toBeInTheDocument());
   });
 
   test('contém um botão que redireciona para a página Done Recipes', () => {
@@ -35,7 +46,15 @@ describe('A página Profile', () => {
     waitFor(() => expect(history.location.pathname).toBe('/favorite-recipes'));
   });
 
-  test('contém um botão Logout que redireciona para a página de Login', () => {
+  test('contém um botão Logout', () => {
+    render(<Profile />);
+
+    const logoutBtn = screen.getByText(/Logout/i);
+    expect(logoutBtn).toBeInTheDocument();
+    userEvent.click(logoutBtn);
+  });
+
+  test('o botão Logout que redireciona para a página de Login', () => {
     const { history } = renderWithRouter(<Profile />);
 
     const logoutBtn = screen.getByTestId('profile-logout-btn');
