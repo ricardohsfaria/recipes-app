@@ -1,10 +1,14 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import RecipesProvider from '../context/RecipesProvider';
 import RecipeDetails from '../components/RecipeDetails';
 
 const doze = 12;
 export default function RecipiesDrinks() {
-  const { recipesDrink } = useContext(RecipesProvider);
+  const { recipesDrink, setTitle } = useContext(RecipesProvider);
+
+  useEffect(() => {
+    setTitle('Drinks');
+  }, [setTitle]);
 
   return (
     <div>
