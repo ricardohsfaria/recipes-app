@@ -12,6 +12,10 @@ function Header() {
     document.title = title;
   }, [title]);
 
+  const sendToProfile = () => {
+    history.push('/profile');
+  };
+
   const { pathname } = history.location;
   if (pathname === '/'
         || pathname.startsWith('/meals/') || pathname.startsWith('/drinks/')
@@ -23,7 +27,11 @@ function Header() {
     return (
       <div>
         <h1 data-testid="page-title">{title}</h1>
-        <img src={ profileIcon } alt="profile" data-testid="profile-top-btn" />
+        <img
+          src={ profileIcon }
+          alt="profile"
+          data-testid="profile-top-btn"
+        />
       </div>
     );
   }
@@ -31,7 +39,16 @@ function Header() {
   return (
     <div>
       <h1 data-testid="page-title">{title}</h1>
-      <img src={ profileIcon } alt="profile" data-testid="profile-top-btn" />
+      <button
+        type="button"
+        onClick={ sendToProfile }
+      >
+        <img
+          src={ profileIcon }
+          alt="profile"
+          data-testid="profile-top-btn"
+        />
+      </button>
       <img src={ searchIcon } alt="search" data-testid="search-top-btn" />
     </div>
   );
