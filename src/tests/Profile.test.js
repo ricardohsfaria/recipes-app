@@ -5,6 +5,12 @@ import Profile from '../pages/Profile';
 import { renderWithRouter } from './helpers/renderWith';
 
 describe('A página Profile', () => {
+  test('contém um título personalizado', () => {
+    render(<Profile />);
+
+    waitFor(() => expect(document.title).toEqual('Profile'));
+  });
+
   test('contém um elemento que mostra um email de exemplo caso não haja email do usuário', () => {
     render(<Profile />);
 

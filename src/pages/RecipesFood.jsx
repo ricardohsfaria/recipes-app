@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import RecipesProvider from '../context/RecipesProvider';
 import RecipeDetails from '../components/RecipeDetails';
+import Footer from '../components/Footer';
 
 const doze = 12;
 function Meals() {
@@ -22,6 +23,7 @@ function Meals() {
           />
         )
       )) }
+      <Footer />
     </div>
   );
 }
