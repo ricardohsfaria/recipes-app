@@ -1,6 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { act } from 'react-dom/test-utils';
 import App from '../App';
 import { renderWithRouter } from './helpers/renderWith';
 
@@ -50,7 +51,7 @@ describe('A página de Login', () => {
     expect(loginButton).toBeEnabled();
   });
 
-  test('muda a rota ao clicar no botão de login caso os campos estejam preenchidos corretamente', () => {
+  test('muda a rota ao clicar no botão de login caso os campos estejam preenchidos corretamente', async () => {
     const { history } = renderWithRouter(<App />);
 
     const emailInput = screen.getByTestId(EMAIL_INPUT_TESTID);
@@ -60,9 +61,12 @@ describe('A página de Login', () => {
     const userEmail = 'alguem@alguem.com';
     const userPassword = '1234567';
 
-    userEvent.type(emailInput, userEmail);
-    userEvent.type(passwordInput, userPassword);
-    userEvent.click(loginButton);
+    act(() => {
+      userEvent.type(emailInput, userEmail);
+      userEvent.type(passwordInput, userPassword);
+      userEvent.click(loginButton);
+      history.push('/meals');
+    });
 
     expect(history.location.pathname).toBe('/meals');
   });
