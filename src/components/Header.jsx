@@ -27,11 +27,13 @@ function Header() {
     return (
       <div>
         <h1 data-testid="page-title">{title}</h1>
-        <img
-          src={ profileIcon }
-          alt="profile"
-          data-testid="profile-top-btn"
-        />
+        <button type="button" onClick={ sendToProfile }>
+          <img
+            src={ profileIcon }
+            alt="profile"
+            data-testid="profile-top-btn"
+          />
+        </button>
       </div>
     );
   }
