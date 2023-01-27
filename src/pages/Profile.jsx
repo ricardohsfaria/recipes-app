@@ -3,6 +3,7 @@ import Footer from '../components/Footer';
 
 function Profile() {
   const user = localStorage.getItem('user');
+
   const userObj = JSON.parse(user); // https://www.w3schools.com/js/js_json_stringify.asp
 
   return (
@@ -12,7 +13,9 @@ function Profile() {
         <p
           data-testid="profile-email"
         >
-          { userObj.email }
+          {
+            user === null ? 'example@example.com' : userObj.email
+          }
         </p>
         <a
           href="/done-recipes"
