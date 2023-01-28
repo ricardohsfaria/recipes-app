@@ -58,6 +58,7 @@ describe('A página Profile', () => {
     const logoutBtn = screen.getByText(/Logout/i);
     expect(logoutBtn).toBeInTheDocument();
     userEvent.click(logoutBtn);
+    expect(localStorage.clear).toHaveBeenCalled();
   });
 
   test('o botão Logout que redireciona para a página de Login', () => {
