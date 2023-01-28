@@ -1,19 +1,34 @@
 import React from 'react';
-import { render, screen, waitFor } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Profile from '../pages/Profile';
 import { renderWithRouter } from './helpers/renderWith';
+import App from '../App';
 
-describe('A página Profile', () => {
-  test('contém um título personalizado', () => {
-    render(<Profile />);
+const EMAIL_INPUT_TESTID = 'email-input';
+const PASSWORD_INPUT_TESTID = 'password-input';
 
-    waitFor(() => expect(document.title).toEqual('Profile'));
+describe('A página Profile contém', () => {
+  beforeEach(() => {
+    const { history } = renderWithRouter(<App />);
+
+    history.push('/');
+
+    const emailInput = screen.getByTestId(EMAIL_INPUT_TESTID);
+    const passwordInput = screen.getByTestId(PASSWORD_INPUT_TESTID);
+    const loginButton = screen.getByRole('button');
+
+    const userEmail = 'alguem@alguem.com';
+    const userPassword = '1234567';
+
+    userEvent.type(emailInput, userEmail);
+    userEvent.type(passwordInput, userPassword);
+    userEvent.click(loginButton);
+
+    history.push('/profile');
   });
 
-  test('contém um elemento que mostra um email de exemplo caso não haja email do usuário', () => {
-    render(<Profile />);
-
+  test('um elemento que mostra um email de exemplo caso não haja email do usuário', () => {
     const userEmail = screen.getByTestId('profile-email');
     expect(userEmail).toBeInTheDocument();
 
@@ -21,18 +36,20 @@ describe('A página Profile', () => {
     expect(userEmail.textContent).toBe(exampleEmail);
   });
 
-  test('contém um elemento que mostra o email do usuário caso esteja no localStorage', () => {
-    const email = 'conde@dracula.com';
-    const userEmail = JSON.stringify({ email });
-    localStorage.setItem('user', userEmail);
-
-    render(<Profile />);
-
-    const emailElement = screen.findByText(/conde@dracula.com/i);
+  test('um elemento que mostra o email do usuário caso esteja no localStorage', () => {
+    const emailElement = screen.findByText(/alguem@alguem.com/i);
     waitFor(() => expect(emailElement).toBeInTheDocument());
   });
 
-  test('contém um botão que redireciona para a página Done Recipes', () => {
+  test('um botão para fazer Logout', () => {
+    const logoutBtn = screen.getByText(/Logout/i);
+    expect(logoutBtn).toBeInTheDocument();
+    userEvent.click(logoutBtn);
+  });
+});
+
+describe('A página Profile contém um botão que redireciona', () => {
+  test('para a página Done Recipes', () => {
     const { history } = renderWithRouter(<Profile />);
 
     const doneRecipesBtn = screen.getByTestId('profile-done-btn');
@@ -42,7 +59,7 @@ describe('A página Profile', () => {
     waitFor(() => expect(history.location.pathname).toBe('/done-recipes'));
   });
 
-  test('contém um botão que redireciona para a página Favorite Recipes', () => {
+  test('para a página Favorite Recipes', () => {
     const { history } = renderWithRouter(<Profile />);
 
     const favoriteRecipesBtn = screen.getByTestId('profile-favorite-btn');
@@ -52,15 +69,7 @@ describe('A página Profile', () => {
     waitFor(() => expect(history.location.pathname).toBe('/favorite-recipes'));
   });
 
-  test('contém um botão Logout', () => {
-    render(<Profile />);
-
-    const logoutBtn = screen.getByText(/Logout/i);
-    expect(logoutBtn).toBeInTheDocument();
-    userEvent.click(logoutBtn);
-  });
-
-  test('o botão Logout que redireciona para a página de Login', () => {
+  test('para a página de Login', () => {
     const { history } = renderWithRouter(<Profile />);
 
     const logoutBtn = screen.getByTestId('profile-logout-btn');

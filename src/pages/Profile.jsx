@@ -1,15 +1,15 @@
-// import React, { useContext, useEffect } from 'react';
-// import RecipesProvider from '../context/RecipesProvider';
+import React, { useContext, useEffect } from 'react';
+import RecipesProvider from '../context/RecipesProvider';
 import Footer from '../components/Footer';
 
 function Profile() {
   const user = localStorage.getItem('user');
   const userObj = JSON.parse(user); // https://www.w3schools.com/js/js_json_stringify.asp
 
-  // const { setTitle } = useContext(RecipesProvider);
-  // useEffect(() => {
-  //   setTitle('Profile');
-  // }, [setTitle]);
+  const { setTitle } = useContext(RecipesProvider);
+  useEffect(() => {
+    setTitle('Profile');
+  }, [setTitle]);
 
   return (
     <div>
