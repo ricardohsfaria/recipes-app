@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Switch, BrowserRouter } from 'react-router-dom';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import Login from './pages/Login';
 import Header from './components/Header';
 import MealDetails from './components/MealDetails';
@@ -50,8 +50,8 @@ function App() {
 
 export default App;
 
-App.propTypes = {
-  history: PropTypes.shape({
-    push: PropTypes.func,
-  }).isRequired,
-};
+// App.propTypes = {
+//   history: PropTypes.shape({
+//     push: PropTypes.func,
+//   }).isRequired,
+// };

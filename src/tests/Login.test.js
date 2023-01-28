@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { act } from 'react-dom/test-utils';
 import App from '../App';
@@ -68,6 +68,6 @@ describe('A página de Login', () => {
       history.push('/meals');
     });
 
-    expect(history.location.pathname).toBe('/meals');
+    waitFor(() => expect(history.location.pathname).toBe('/meals'));
   });
 });
